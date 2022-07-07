@@ -1,4 +1,6 @@
 package controlador;
+import java.util.Arrays;
+
 import modelo.Persona;
 
 public class ControladorPersona{
@@ -22,15 +24,87 @@ public class ControladorPersona{
     this.personas[pos] = persona;
   }
 
-  public void crearPersona(String nombre, String apellido, int edad, double cedula){
+  public void crearPersona(String nombre, String apellido, int edad, String cedula){
     Persona persona = new Persona(nombre, apellido, edad, cedula);
-    System.out.println("La persona es: "+persona);
-    setPersona(persona, 0);
-    System.out.println("La persona es: "+persona);
-    String str = personas.toString();
-    System.out.println(str);
+    int tamanio_arreglo = this.personas.length;
+        int cont = 0;
+        boolean flag = false;
+        do{
+            if(this.personas[cont] == null){
+                this.personas[cont] = persona;
+                flag = true;
+            }
+            cont++;
+        }while (cont < tamanio_arreglo && !flag);
   }
 
-  
-  
+  public void mostrarPersona(){
+        int cont = 0;
+        int tamanio_arreglo = this.personas.length;
+        while(cont < tamanio_arreglo){
+            if(this.personas[cont] != null){
+                System.out.println("----------Persona " + (cont+1) + "----------\n");
+                System.out.println("Nombre: " + this.personas[cont].getNombre());
+                System.out.println("Apellido: " + this.personas[cont].getApellido());
+                System.out.println("Edad: " + this.personas[cont].getEdad());
+                System.out.println("Cedula: " + this.personas[cont].getCedula());
+                System.out.println();
+            }
+            cont++;
+        }
+  }
+
+
+  public void indicePersona(String nombre){
+    int cont = 0;
+    int tamanio_arreglo = this.personas.length;
+    while(cont < tamanio_arreglo){
+      if(this.personas[cont] != null){
+        if(this.personas[cont].getNombre().equals(nombre)){
+          System.out.println("----------Persona " + (cont+1) + "----------\n");
+          System.out.println("Nombre: " + this.personas[cont].getNombre());
+          System.out.println("Apellido: " + this.personas[cont].getApellido());
+          System.out.println("Edad: " + this.personas[cont].getEdad());
+          System.out.println("Cedula: " + this.personas[cont].getCedula());
+          System.out.println();
+        }
+      }
+      cont++;
+
+    }
+  }
+
+  //eliminar persona
+  public void eliminarPersona(String cedula){
+    int cont = 0;
+    int tamanio_arreglo = this.personas.length;
+    while(cont < tamanio_arreglo){
+      if(this.personas[cont] != null){
+        if(this.personas[cont].getCedula().equals(cedula)){
+          this.personas[cont] = null;
+        }
+      }
+      cont++;
+      sortPersonas();
+    }
+  }
+
+  //sort personas so null values are at the end of the array
+  public void sortPersonas(){
+    Persona[] aux = new Persona[this.personas.length];
+    int cont = 0;
+    int conta = 0;
+    int tamanio_arreglo = this.personas.length;
+    while(cont < tamanio_arreglo){
+      if(this.personas[cont] != null){
+        aux[conta] = this.personas[cont];
+        conta++;
+      }
+      cont++;
+    }
+    for(int i = 0; i < aux.length; i++)
+      personas[i] = aux[i];
+  }
+
+
 }

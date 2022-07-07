@@ -1,51 +1,60 @@
 package modelo;
 
-public class Persona {
-  
-  private String nombre;
-  private String apellido ;
-  private int edad;
-  private double cedula;
+public class Persona{
+    //Atributos
+    private String nombre;
+    private String apellido;
+    private int edad;
+    private String cedula;
 
-  public Persona(String nombre, String apellido, int edad, double cedula){
-  
-    this.nombre = nombre;
-    this.apellido = apellido;
-    this.edad = edad;
-    this.cedula = cedula;
+    //Constructor
+    public Persona(String nombre, String apellido, int edad, String cedula){
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.edad = edad;
+        this.cedula = cedula;
+    }
 
-  }
-    
+    @Override
+    public String toString(){
+        String info = ("Nombre: " + this.nombre + "\n" +
+                       "Apellido: " + this.apellido + "\n" +
+                       "Edad: " + this.edad + "\n" +
+                       "Cedula: " + this.cedula + "\n");
+        return info;
+    }
+
+    //Getters y Setters
+
     public String getNombre() {
-      return nombre;
+        return nombre;
     }
-  
-    public String getApellido() {
-      return apellido;
-    }
-  
-    public int getEdad() {
-      return edad;
-    }
-  
-    public double getCedula() {
-      return cedula;
-    }
-  
+
     public void setNombre(String nombre) {
-          this.nombre = nombre;
-      }
-  
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
     public void setApellido(String apellido) {
-          this.apellido = apellido;
-      }
-  
+        this.apellido = apellido;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
     public void setEdad(int edad) {
-          this.edad = edad;
-      }
-  
-    public void setCedula(double cedula) {
-          this.cedula = cedula;
-      }
-  
+        this.edad = edad;
+    }
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    } 
 }
